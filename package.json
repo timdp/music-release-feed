@@ -1,0 +1,23 @@
+{
+  "name": "music-release-feed",
+  "repository": "timdp/music-release-feed",
+  "private": true,
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "async-retry": "^1.1.1",
+    "bluebird": "^3.5.0",
+    "express": "^4.15.3",
+    "js-yaml": "^3.8.4",
+    "morgan": "^1.8.2",
+    "multipipe": "^1.0.2",
+    "nodebrainz": "^2.1.1",
+    "read-pkg-up": "^2.0.0",
+    "serialize-error": "^2.1.0",
+    "sqlite3": "^3.1.8",
+    "stream-to-promise": "^2.2.0",
+    "through2": "^2.0.3"
+  }
+}
