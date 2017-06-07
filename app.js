@@ -11,6 +11,7 @@ const storage = require('./lib/storage')
 const PORT = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 8080
 const IP = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 const FEED_URI = '/feed.json'
+const DB_URI = '/data.sqlite'
 const MAX_ITEMS = 20
 const SYNCHRONIZATION_INTERVAL = 10 * 60 * 1000
 
@@ -49,6 +50,10 @@ app.get(FEED_URI, (req, res) => {
     .once('error', (error) => {
       res.status(500).send(serializeError(error))
     })
+})
+
+app.get(DB_URI, (req, res) => {
+  res.sendFile(storage.DB_PATH)
 })
 
 const server = app.listen(PORT, IP, () => {
