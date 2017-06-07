@@ -17,6 +17,9 @@ const SYNCHRONIZATION_INTERVAL = 10 * 60 * 1000
 const app = express()
 app.use(morgan('combined'))
 
+const toArtistCredit = (releaseData) =>
+  releaseData['artist-credit'].map(({artist: {name}}) => name).join(', ')
+
 const toJsonFeed = (releases, host) => ({
   version: 'https://jsonfeed.org/version/1',
   title: 'New Releases',
@@ -26,7 +29,7 @@ const toJsonFeed = (releases, host) => ({
     id: release.reid,
     // TODO Move to storage
     date_published: new Date(release.created).toISOString(),
-    title: `${release.artist} – ${release.data.title}`,
+    title: toArtistCredit(release.data) + ' – ' + release.data.title,
     external_url: `https://musicbrainz.org/release/${release.reid}`,
     content_html: '<pre>' +
       yaml.safeDump(release.data).replace(/</g, '&lt;') +
