@@ -58,5 +58,6 @@ app.get(DB_URI, (req, res) => {
 
 const server = app.listen(PORT, IP, () => {
   console.info('Listening on %s', JSON.stringify(server.address()))
+  synchronize()
   setInterval(synchronize, SYNCHRONIZATION_INTERVAL)
 })
