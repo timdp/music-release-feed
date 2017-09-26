@@ -30,10 +30,10 @@ class HttpError extends Error {
 const toArtistCredit = (releaseData) =>
   releaseData['artist-credit'].map(({artist: {name}}) => name).join(', ')
 
-const toJsonFeed = (releases, host) => ({
+const toJsonFeed = (releases, feedUrl) => ({
   version: 'https://jsonfeed.org/version/1',
   title: 'New Releases',
-  feed_url: `https://${host}${FEED_URI}`,
+  feed_url: feedUrl,
   home_page_url: HOME_PAGE_URL,
   items: releases.map((release) => ({
     id: release.reid,
@@ -65,7 +65,7 @@ app.get('/health', (req, res) => {
 
 app.get(FEED_URI, handle(async (req, res) => {
   const releases = await Release.find().sort('-date').limit(MAX_ITEMS).exec()
-  return toJsonFeed(releases, req.headers.host)
+  return toJsonFeed(releases, `${req.protocol}://${req.headers.host}${FEED_URI}`)
 }))
 
 app.get('/artists', handle(async (req, res) => {
