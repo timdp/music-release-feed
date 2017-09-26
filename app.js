@@ -59,6 +59,10 @@ app.get('/', (req, res) => {
   res.redirect(HOME_PAGE_URL)
 })
 
+app.get('/health', (req, res) => {
+  res.send({})
+})
+
 app.get(FEED_URI, handle(async (req, res) => {
   const releases = await Release.find().sort('-date').limit(MAX_ITEMS).exec()
   return toJsonFeed(releases, req.headers.host)
