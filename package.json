@@ -4,10 +4,15 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "start": "node app"
+    "start": "node app.babel.js"
+  },
+  "engines": {
+    "node": ">=6"
   },
   "dependencies": {
     "async-retry": "^1.1.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.26.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.18.2",
     "express": "^4.15.3",
@@ -20,5 +25,14 @@
     "serialize-error": "^2.1.0",
     "stream-to-promise": "^2.2.0",
     "through2": "^2.0.3"
+  },
+  "babel": {
+    "presets": [
+      ["env", {
+        "targets": {
+          "node": 6
+        }
+      }]
+    ]
   }
 }
