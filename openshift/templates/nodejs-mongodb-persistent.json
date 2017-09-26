@@ -255,7 +255,8 @@
                 },
                 "resources": {
                   "limits": {
-                    "memory": "${MEMORY_LIMIT}"
+                    "memory": "${MEMORY_LIMIT}",
+                    "cpu": "1"
                   }
                 }
               }
@@ -411,7 +412,8 @@
                 },
                 "resources": {
                   "limits": {
-                    "memory": "${MEMORY_MONGODB_LIMIT}"
+                    "memory": "${MEMORY_MONGODB_LIMIT}",
+                    "cpu": "1"
                   }
                 },
                 "volumeMounts": [
